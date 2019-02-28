@@ -41,7 +41,54 @@ public class SlideCreator {
         
         ArrayList<Slide> verticalSlides = VerticalCombo(verticalPhotos);
         
+        //Combine all Slides and place in Heap order 
         
+        
+        //HeapSort all slides so its maxtags to least tags 
+        
+        
+        
+        //Go through the ArrayList and  compare the first one to the next to find the best pair
+        
+        ArrayList<Slide> orderedSlidesByNumOfTags = new ArrayList<Slide>();
+        int currBest = 0; 
+        
+        while (!orderedSlidesByNumOfTags.isEmpty()){
+            currBest = 0;
+            Slide firstSlide = orderedSlidesByNumOfTags.get(0);
+            ArrayList<String> firstTags = firstSlide.getTags();
+            int firstTagNum = firstSlide.getNumTags();
+            
+            
+            for (int j = 1; j< orderedSlidesByNumOfTags.size(); j++){
+                Slide second = orderedSlidesByNumOfTags.get(j);
+                
+                int secondTagNum = second.getNumTags();
+                ArrayList<String> secondTags = second.getTags();
+                int both = 0;
+                int onlyFirst = 0; 
+                int onlySecond = 0; 
+                
+                if (firstTagNum < secondTagNum){
+                    for (int e = 0; e < firstTagNum; e++){
+                        if (secondTags.contains(firstTags.get(e))){
+                            both++;
+                        }else{
+                            onlyFirst++;
+                        }
+                        
+                    }
+                    onlySecond = secondTagNum - both;
+                    
+                    currBest = Math.min(both, Math.min(onlyFirst, onlySecond));
+                    
+                }
+                
+            }
+            
+            
+            
+        }
         
         
         
