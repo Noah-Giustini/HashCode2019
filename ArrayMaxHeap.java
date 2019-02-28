@@ -11,12 +11,12 @@ import java.lang.Math;
  * <br><br>
  * 
 */
-public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> {
+public class ArrayMaxHeap {
 
   // Data fields
     private final int CAPACITY;
     private int size;
-    private ArrayList<T> A;
+    private ArrayList<Slide> A;
 
   // Returns the index of a parent of a node that has one
     //
@@ -111,9 +111,9 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     // Note: The value of i can change - by decreasing - as this problem is being solved.
     private void bubbleUp(int i) {
         if (i !=0){
-            int comparison = A.get(i).getNumTags().compareTo(A.get(parent(i)).getNumTags());
+            int comparison = A.get(i).getNumTags() - A.get(parent(i)).getNumTags();
             if(comparison > 0){
-                T temp = A.get(i);
+                Slide temp = A.get(i);
                 A.set(i, A.get(parent(i)));
                 A.set(parent(i), temp);
                 bubbleUp(parent(i));
@@ -147,27 +147,27 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     private void bubbleDown(int i) {
 
         if (hasRight(i)) {
-            int compareValue = A.get(leftChild(i)).getNumTags().compareTo(A.get(rightChild(i)).getNumTags());
-            int anotherCompare = A.get(rightChild(i)).getNumTags().compareTo(A.get(i).getNumTags());
+            int compareValue = A.get(leftChild(i)).getNumTags() - A.get(rightChild(i)).getNumTags();
+            int anotherCompare = A.get(rightChild(i)).getNumTags() - A.get(i).getNumTags();
 
             if (compareValue >= 0) {
-                int nextCompare = A.get(leftChild(i)).getNumTags().compareTo(A.get(i).getNumTags());
+                int nextCompare = A.get(leftChild(i)).getNumTags() - A.get(i).getNumTags();
                 if (nextCompare > 0) {
-                    T temp = A.get(leftChild(i));
+                    Slide temp = A.get(leftChild(i));
                     A.set(leftChild(i), A.get(i));
                     A.set(i, temp);
                     bubbleDown(leftChild(i));
                 }
             } else if (anotherCompare > 0) {
-                T temp = A.get(rightChild(i));
+                Slide temp = A.get(rightChild(i));
                 A.set(rightChild(i), A.get(i));
                 A.set(i, temp);
                 bubbleDown(rightChild(i));
             }
         } else if (hasLeft(i)) {
-            int lastCompare = A.get(leftChild(i)).getNumTags().compareTo(A.get(i).getNumTags());
+            int lastCompare = A.get(leftChild(i)).getNumTags() - A.get(i).getNumTags();
             if (lastCompare > 0) {
-                T temp = A.get(leftChild(i));
+                Slide temp = A.get(leftChild(i));
                 A.set(leftChild(i), A.get(i));
                 A.set(i, temp);
                 bubbleDown(leftChild(i));
@@ -227,7 +227,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
 
             CAPACITY = capacity;
             size = 0;
-            A = new ArrayList<T>(capacity);
+            A = new ArrayList<Slide>(capacity);
             int i = 0;
 
       // Loop Invariant:
@@ -271,7 +271,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
      * </ol>
      *
      */
-    public ArrayMaxHeap(ArrayList<T> givenA) {
+    public ArrayMaxHeap(ArrayList<Slide> givenA) {
 
         CAPACITY = givenA.size();
         size = CAPACITY;
@@ -281,7 +281,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     }
 
   // Implementation of insert
-    public void insert(T v) throws HeapFullException {
+    public void insert(Slide v) throws HeapFullException {
         //System.out.println("CAPACITY = " + CAPACITY);
         //System.out.println("size = " +size);
         
@@ -306,7 +306,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     }
 
   // Implementation of deleteMax
-    public T deleteMax() throws NoSuchElementException {
+    public Slide deleteMax() throws NoSuchElementException {
         if (size ==0){//originally we had A.size() 
             throw new NoSuchElementException();
 
@@ -314,7 +314,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
 
             //System.out.println("A = " + A);
             int sizeVar = size;//originally we had A.size() 
-            T v = A.get(size-1);//originally we had A.size() 
+            Slide v = A.get(size-1);//originally we had A.size() 
             size -= 1;
            //System.out.println("Size = " + size);
             if (size ==0){
@@ -324,7 +324,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
                 return v;
 
             } else{
-                T toReturn = A.get(0);
+                Slide toReturn = A.get(0);
                 A.set(0,v);
                 A.set(size, null);
                 //System.out.println("A.get(0) = " + A.get(0));
@@ -349,7 +349,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     }
 
   // Used for testing
-    T valueByIndex(int indx) throws NoSuchElementException {
+    Slide valueByIndex(int indx) throws NoSuchElementException {
 
         if ((indx >= 0) && (indx < size)) {
 
@@ -363,7 +363,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
 
     }
 
-    public String getArray(){
-    	return A.toString();
+    public ArrayList<Slide> getArray(){
+    	return A;
     }
 }
