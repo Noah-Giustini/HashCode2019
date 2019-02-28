@@ -5,7 +5,7 @@ import java.util.*;
 
 public class SlideCreator {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         ArrayList<Photo> verticalPhotos = new ArrayList<Photo>();
         ArrayList<Photo> horizontalPhotos = new ArrayList<Photo>();
 
@@ -32,14 +32,25 @@ public class SlideCreator {
         }
 
         //Generate the Slides 
-        ArrayList<Slide> horizontalSlides = new ArrayList<Slide>();
-
-        ArrayList<Slide> verticalSlides = VerticalCombo(verticalPhotos);
-
+//Generate the Slides 
+        ArrayList<Slide> Slides = new VerticalCombo(verticalPhotos).getSlides();
+        
+        for (int m = 0; m < horizontalPhotos.size(); m++){
+			
+			Slides.add(new Slide(horizontalPhotos.get(m).getIdentifier(), horizontalPhotos.get(m).getTags()));
+		}
+        
+        
+        //Place Slides in Heap order 
+        ArrayMaxHeap maxheap = new ArrayMaxHeap(Slides);
+        ArrayList<Slide> orderedSlidesByNumOfTags = maxheap.getArray();
+        //HeapSort all slides so its maxtags to least tags 
+        
+        
         //Combine all Slides and place in Heap order 
         //HeapSort all slides so its maxtags to least tags 
         //Go through the ArrayList and  compare the first one to the next to find the best pair
-        ArrayList<Slide> orderedSlidesByNumOfTags = new ArrayList<Slide>();
+ 
         int currBest = 0;
         int idxOfBest = 0;
         Slide firstSlide = orderedSlidesByNumOfTags.get(0);
@@ -101,7 +112,22 @@ public class SlideCreator {
 
         }
         finalShow.add(orderedSlidesByNumOfTags.get(0));
-
+        
+        PrintWriter p = new PrintWriter(new FileWriter(new File("submission.txt")));
+       p.println(finalShow.size());
+        for (int k = 0; k < finalShow.size(); k++  ){
+            String s = ""  + finalShow.get(k).getNumber0();
+            if (finalShow.get(k).getNumber1() != -1){
+                s += " " + finalShow.get(k).getNumber1();
+            }
+        
+            p.println(s);
+        
+        }
+        
+    
+    
+    
     }
 
     public static void printArray(String[] a) {
