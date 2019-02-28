@@ -111,7 +111,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     // Note: The value of i can change - by decreasing - as this problem is being solved.
     private void bubbleUp(int i) {
         if (i !=0){
-            int comparison = A.get(i).compareTo(A.get(parent(i)));
+            int comparison = A.get(i).getNumTags().compareTo(A.get(parent(i)).getNumTags());
             if(comparison > 0){
                 T temp = A.get(i);
                 A.set(i, A.get(parent(i)));
@@ -147,11 +147,11 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     private void bubbleDown(int i) {
 
         if (hasRight(i)) {
-            int compareValue = A.get(leftChild(i)).compareTo(A.get(rightChild(i)));
-            int anotherCompare = A.get(rightChild(i)).compareTo(A.get(i));
+            int compareValue = A.get(leftChild(i)).getNumTags().compareTo(A.get(rightChild(i)).getNumTags());
+            int anotherCompare = A.get(rightChild(i)).getNumTags().compareTo(A.get(i).getNumTags());
 
             if (compareValue >= 0) {
-                int nextCompare = A.get(leftChild(i)).compareTo(A.get(i));
+                int nextCompare = A.get(leftChild(i)).getNumTags().compareTo(A.get(i).getNumTags());
                 if (nextCompare > 0) {
                     T temp = A.get(leftChild(i));
                     A.set(leftChild(i), A.get(i));
@@ -165,7 +165,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
                 bubbleDown(rightChild(i));
             }
         } else if (hasLeft(i)) {
-            int lastCompare = A.get(leftChild(i)).compareTo(A.get(i));
+            int lastCompare = A.get(leftChild(i)).getNumTags().compareTo(A.get(i).getNumTags());
             if (lastCompare > 0) {
                 T temp = A.get(leftChild(i));
                 A.set(leftChild(i), A.get(i));
