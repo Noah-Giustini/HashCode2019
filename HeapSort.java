@@ -1,8 +1,4 @@
-package cpsc331.assignment3;
-
-import cpsc331.assignment3.ArrayMaxHeap;
 import java.util.NoSuchElementException;
-import cpsc331.collections.HeapFullException;
 import java.util.ArrayList;
 
 /**

@@ -1,9 +1,5 @@
-package cpsc331.assignment3;
-
-import cpsc331.collections.BoundedMaxHeap;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-import cpsc331.collections.HeapFullException;
 import java.lang.Math;
 
 /**
@@ -59,7 +55,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     //
     private int leftChild(int i) {
 
-        return 2 * i + 1;    // To be supplied by students
+        return 2 * i + 1; 
 
     }
 
@@ -125,7 +121,6 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
             }
         }
 
-    // To be supplied by students
     }
 
   //
@@ -308,7 +303,6 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
         }
         //System.out.println("A = " + A);
 
-    // To be supplied by students
     }
 
   // Implementation of deleteMax
@@ -344,17 +338,17 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
         
     }
 
-  // Implementation of getSize; supplied by instructor
+  // Implementation of getSize
     public int getSize() {
         return size;
     }
 
-  // Implementation of getCapacity; supplied by instructor
+  // Implementation of getCapacity
     public int getCapacity() {
         return CAPACITY;
     }
 
-  // Used for testing; supplied by instructor
+  // Used for testing
     T valueByIndex(int indx) throws NoSuchElementException {
 
         if ((indx >= 0) && (indx < size)) {
