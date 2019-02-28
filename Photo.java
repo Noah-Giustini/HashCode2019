@@ -1,4 +1,4 @@
-import java.util.ArrayList<E>;
+import java.util.*;
 import java.lang.Integer;
 
 public class Photo{
@@ -12,7 +12,7 @@ public class Photo{
                 this.identifier = lineNum;
                 this.orientation = line[0];
                 this.numTags = Integer.parseInt(line[1]);
-                for (i=2, i++, line.length - 1){
+                for (int i=2; i <line.length - 1; i++){
                         tags.add(line[i]);
                 }
         }
@@ -23,7 +23,7 @@ public class Photo{
         public int getNumTags(){
                 return this.numTags;
         }
-        public ArrayList<string> getTags(){
+        public ArrayList<String> getTags(){
                 return this.tags;
         }
         public int getIdentifier(){

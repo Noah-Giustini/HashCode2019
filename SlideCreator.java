@@ -32,6 +32,12 @@ public class SlideCreator {
             i++;
         }
         
+        //Generate the Slides 
+        //ArrayList<Slide> horizontalSlides = new ArrayList<Slide>();
+        //ArrayList<Slide> verticalSlides = new ArrayList<Slide>();
+        
+        
+        
         
         
         
