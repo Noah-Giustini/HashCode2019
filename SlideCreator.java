@@ -54,7 +54,7 @@ public class SlideCreator {
         int currBest = 0;
         int idxOfBest = 0;
         Slide firstSlide = orderedSlidesByNumOfTags.get(0);
-        ArrayList<Slide> finalShow = new Arraylist<Slide>();
+        ArrayList<Slide> finalShow = new ArrayList<Slide>();
 
         while (orderedSlidesByNumOfTags.size() != 1) {
             currBest = 0;
