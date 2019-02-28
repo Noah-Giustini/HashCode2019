@@ -7,7 +7,7 @@ import java.util.ArrayList;
 *
 */
 
-public class HeapSort<T extends Comparable<T>> {
+public class HeapSort {
 
   /**
   *
@@ -30,12 +30,12 @@ public class HeapSort<T extends Comparable<T>> {
   *
   */
   
-  public void sort(ArrayList<T> A) {
-   ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
+  public void sort(ArrayList<Slide> A) {
+   ArrayMaxHeap H = new ArrayMaxHeap(A);
    
     int i = A.size();
     while (i > 0){
-      T largest = H.deleteMax();
+      Slide largest = H.deleteMax();
       A.set(H.getSize(), largest);
       i -=1;
     

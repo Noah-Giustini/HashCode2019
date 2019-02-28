@@ -13,7 +13,8 @@ public class SlideCreator {
         File theFile = new File(fileName);
         Scanner reader = new Scanner(theFile);
         int i = 0;
-        int total = reader.nextInt();
+        int total = Integer.parseInt(reader.nextLine());
+        
 
         //Sort the photos into Horizontal or Vertial
         while (reader.hasNext()) {
@@ -22,10 +23,10 @@ public class SlideCreator {
             String[] data = theLine.split(" ");
 
             if (data[0].equals("H")) {
-                //printArray(data);
+                printArray(data);
                 horizontalPhotos.add(new Photo(data, i));
             } else {
-                //printArray(data);
+                printArray(data);
                 verticalPhotos.add(new Photo(data, i));
             }
             i++;

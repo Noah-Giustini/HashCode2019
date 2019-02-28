@@ -5,15 +5,17 @@ public class Photo{
 
         private String orientation;
         private int numTags;
-        private ArrayList<String> tags;
+        private ArrayList<String> tags = new ArrayList<String>();
         private int identifier;
 
         public Photo (String[] line, int lineNum){
                 this.identifier = lineNum;
                 this.orientation = line[0];
                 this.numTags = Integer.parseInt(line[1]);
-                for (int i=2; i <line.length - 1; i++){
+                                
+                for (int i = 2; i < line.length; i++ ){
                         tags.add(line[i]);
+                        i++;
                 }
         }
 
