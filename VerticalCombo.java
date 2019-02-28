@@ -3,8 +3,8 @@ import java.util.Arrays;
 
 public class VerticalCombo{
 	
-	private ArrayList<Photo> photos;
-	private ArrayList<Slide> verticalslides;
+	private ArrayList<Photo> photos = new ArrayList<Photo>();
+	private ArrayList<Slide> verticalslides = new ArrayList<Slide>();
 	
 
 	public VerticalCombo(ArrayList<Photo> vertphotos){	
@@ -18,14 +18,13 @@ public class VerticalCombo{
 		
 		int goal = 0;
 		
-		while(this.photos.get(0) != null) {
+		while(this.photos.size() >= 2) {
 			Photo newph = this.photos.get(0);
 			
-			int j = 1;
 			int best = 1;
 			int score = 100;
 			
-			while(this.photos.get(j) != null) {
+			for (int j = 1; j < this.photos.size(); j++){
 				
 				int tstscore = 0;
 				
@@ -52,8 +51,8 @@ public class VerticalCombo{
 			}
 			
 			verticalslides.add(new Slide(newph.getIdentifier(), this.photos.get(best).getIdentifier(), newph.getTags(), this.photos.get(best).getTags()));
-			this.photos.remove(0);
 			this.photos.remove(best);
+			this.photos.remove(0);
 			
 			
 		}

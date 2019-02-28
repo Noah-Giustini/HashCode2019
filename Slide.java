@@ -5,7 +5,7 @@ public class Slide{
 	
 	private int number0 = 0;
 	private int number1 = -1;
-	private ArrayList<String> tags;
+	private ArrayList<String> tags = new ArrayList<String>();
 	private int numtags = 0;
 	
 
