@@ -54,8 +54,9 @@ public class SlideCreator {
         int currBest = 0; 
         int idxOfBest = 0;
         Slide firstSlide = orderedSlidesByNumOfTags.get(0);
+        ArrayList<Slide> finalShow = new Arraylist<Slide>;
         
-        while (!orderedSlidesByNumOfTags.isEmpty()){
+        while (!orderedSlidesByNumOfTags.size() == 1){
             currBest = 0;
             idxOfBest = 0;
             ArrayList<String> firstTags = firstSlide.getTags();
@@ -102,17 +103,11 @@ public class SlideCreator {
                 
                 
             }
-            
-            orderedSlidesByNumOfTags.remove(orderedSlidesByNumOfTags.idxOfBest);
-            orderedSlidesByNumOfTags.remove(0);
-            
-            
-            
+            finalShow.add(orderedSlidesByNumOfTags.get(0));
+            orderedSlidesByNumOfTags.set(0,orderedSlidesByNumOfTags.get(idxOfBest));
+            orderedSlidesByNumOfTags.remove(idxOfBest);
         }
-        
-        
-        
-    
+        finalShow.add(orderedSlidesByNumOfTags.get(0));    
     
     }
     
